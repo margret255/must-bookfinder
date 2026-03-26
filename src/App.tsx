@@ -14,6 +14,10 @@ import MyRatings from "./pages/MyRatings";
 import ReadingList from "./pages/ReadingList";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminBooks from "./pages/AdminBooks";
+import AdminTrends from "./pages/AdminTrends";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +38,10 @@ const App = () => (
           <Route path="/ratings" element={<MyRatings />} />
           <Route path="/reading-list" element={<ReadingList />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/books" element={<AdminBooks />} />
+          <Route path="/admin/trends" element={<AdminTrends />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
