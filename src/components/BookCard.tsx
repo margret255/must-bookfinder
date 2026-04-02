@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { StarRating } from "./StarRating";
 import { Book } from "@/data/mockData";
+import { bookCovers } from "@/data/bookCovers";
 import { BookOpen } from "lucide-react";
 
 interface BookCardProps {
@@ -16,6 +17,8 @@ const difficultyColors: Record<string, string> = {
 };
 
 export function BookCard({ book, index = 0 }: BookCardProps) {
+  const cover = bookCovers[book.id];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -25,7 +28,16 @@ export function BookCard({ book, index = 0 }: BookCardProps) {
       <Link to={`/book/${book.id}`} className="block group">
         <div className="relative bg-card rounded-[12px] p-4 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200">
           <div className="aspect-[3/4] mb-4 bg-muted rounded-[8px] overflow-hidden flex items-center justify-center">
-            <BookOpen className="h-12 w-12 text-muted-foreground/30" />
+            {cover ? (
+              <img
+                src={cover}
+                alt={book.title}
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            ) : (
+              <BookOpen className="h-12 w-12 text-muted-foreground/30" />
+            )}
           </div>
           <h3 className="font-semibold text-sm leading-tight text-card-foreground mb-1 line-clamp-2">
             {book.title}

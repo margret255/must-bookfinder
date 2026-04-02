@@ -125,10 +125,15 @@ export default function Landing() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8 text-center">
-        <p className="text-xs text-muted-foreground">
-          © 2026 Meru University of Science and Technology. All rights reserved.
-        </p>
+      <footer className="border-t border-border py-8 px-6">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground">
+            © 2026 Meru University of Science and Technology. All rights reserved.
+          </p>
+          <Link to="/admin/login" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+            Admin Portal →
+          </Link>
+        </div>
       </footer>
     </div>
   );
