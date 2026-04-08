@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,13 +8,34 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { programs, yearOptions, categories } from "@/data/mockData";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+
+const validateEmail = (email: string) => {
+  const lower = email.toLowerCase().trim();
+  if (!lower) return "Email is required.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lower)) return "Enter a valid email address.";
+  const isGmail = lower.endsWith("@gmail.com");
+  const isAcademic = /\.(edu|ac\.[a-z]{2,}|edu\.[a-z]{2,})$/.test(lower.split("@")[1]);
+  if (!isGmail && !isAcademic) return "Only @gmail.com or academic emails are accepted.";
+  return "";
+};
+
+const validatePassword = (pw: string) => {
+  const errors: string[] = [];
+  if (pw.length < 8) errors.push("at least 8 characters");
+  if (!/[A-Z]/.test(pw)) errors.push("one uppercase letter");
+  if (!/[0-9]/.test(pw)) errors.push("one number");
+  if (!/[^A-Za-z0-9]/.test(pw)) errors.push("one special character");
+  return errors.length ? `Password needs: ${errors.join(", ")}.` : "";
+};
 
 export default function Register() {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
   const [difficulty, setDifficulty] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   const toggleSubject = (subject: string) => {
     setSelectedSubjects((prev) =>
@@ -24,9 +45,24 @@ export default function Register() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const emailErr = validateEmail(email);
+    const pwErr = validatePassword(password);
+    if (emailErr || pwErr) {
+      setErrors({ email: emailErr || undefined, password: pwErr || undefined });
+      return;
+    }
+    setErrors({});
     toast({ title: "Account created!", description: "Welcome to MUST Book Recommender." });
     navigate("/dashboard");
   };
+
+  // Password strength indicator
+  const pwChecks = [
+    { label: "8+ characters", pass: password.length >= 8 },
+    { label: "Uppercase", pass: /[A-Z]/.test(password) },
+    { label: "Number", pass: /[0-9]/.test(password) },
+    { label: "Special char", pass: /[^A-Za-z0-9]/.test(password) },
+  ];
 
   return (
     <div className="min-h-screen bg-background grid-pattern flex items-center justify-center p-6">
@@ -85,11 +121,23 @@ export default function Register() {
               </div>
               <div className="col-span-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="john@students.must.ac.ke" required className="mt-1" />
+                <Input id="email" type="email" placeholder="john@students.must.ac.ke" value={email} onChange={(e) => setEmail(e.target.value)} required className="mt-1" />
+                {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+                <p className="text-[10px] text-muted-foreground mt-0.5">Gmail or academic emails only</p>
               </div>
               <div className="col-span-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" placeholder="••••••••" required className="mt-1" />
+                <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required className="mt-1" />
+                {errors.password && <p className="text-xs text-destructive mt-1">{errors.password}</p>}
+                {password && (
+                  <div className="flex gap-2 mt-2">
+                    {pwChecks.map((c) => (
+                      <span key={c.label} className={`text-[10px] px-2 py-0.5 rounded-full border ${c.pass ? "bg-primary/10 text-primary border-primary/30" : "bg-muted text-muted-foreground border-border"}`}>
+                        {c.pass ? "✓" : "○"} {c.label}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
