@@ -108,4 +108,104 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
   }
+
+  /* Ornamental divider with decorative flourish */
+  .ornamental-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .ornamental-divider::before,
+  .ornamental-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
+  }
+  .ornamental-divider::before {
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3));
+  }
+  .ornamental-divider::after {
+    background: linear-gradient(90deg, hsl(var(--primary) / 0.3), transparent);
+  }
+
+  /* Drop cap for first letter of paragraphs */
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', Georgia, serif;
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.08em;
+    margin-top: 0.05em;
+    font-weight: 700;
+    color: hsl(var(--primary));
+  }
+
+  /* Book spine effect for cards */
+  .book-spine {
+    position: relative;
+    border-left: 4px solid hsl(var(--primary) / 0.6);
+    box-shadow: 
+      inset 6px 0 12px -6px hsl(var(--primary) / 0.1),
+      var(--shadow-card);
+  }
+  .book-spine::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary) / 0.08),
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  /* Decorative corner ornament */
+  .corner-ornament {
+    position: relative;
+  }
+  .corner-ornament::before,
+  .corner-ornament::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: hsl(var(--primary) / 0.2);
+    pointer-events: none;
+  }
+  .corner-ornament::before {
+    top: 8px;
+    left: 8px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-color: inherit;
+  }
+  .corner-ornament::after {
+    bottom: 8px;
+    right: 8px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    border-color: inherit;
+  }
+
+  /* Section heading with ornamental underline */
+  .section-heading {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+  .section-heading::after {
+    content: '❧';
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: hsl(var(--primary) / 0.4);
+    margin-top: 0.25rem;
+    letter-spacing: 0.5em;
+  }
 }

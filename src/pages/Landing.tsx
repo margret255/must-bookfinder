@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { BookOpen, ArrowRight, Search, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { OrnamentalDivider } from "@/components/OrnamentalDivider";
 
 export default function Landing() {
   return (
@@ -44,7 +45,8 @@ export default function Landing() {
             <br />
             <span className="text-primary">MUST students.</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10">
+          <OrnamentalDivider symbol="✦" />
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 drop-cap">
             Master your coursework with peer-backed resources. Find, rate, and share the best academic books for your program.
           </p>
         </motion.div>
@@ -85,6 +87,8 @@ export default function Landing() {
         </motion.div>
       </section>
 
+      <OrnamentalDivider symbol="§" />
+
       {/* Features */}
       <section className="max-w-5xl mx-auto px-6 pb-24">
         <motion.div
@@ -112,7 +116,7 @@ export default function Landing() {
           ].map((f, i) => (
             <div
               key={i}
-              className="bg-card rounded-[12px] p-6 shadow-card hover:shadow-card-hover transition-all duration-200"
+              className="bg-card rounded-[12px] p-6 shadow-card hover:shadow-card-hover transition-all duration-200 corner-ornament"
             >
               <div className="h-10 w-10 rounded-[8px] bg-accent flex items-center justify-center mb-4">
                 <f.icon className="h-5 w-5 text-accent-foreground" />
