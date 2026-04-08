@@ -26,7 +26,7 @@ export function BookCard({ book, index = 0 }: BookCardProps) {
       transition={{ duration: 0.3, delay: index * 0.05, ease: [0.2, 0, 0, 1] }}
     >
       <Link to={`/book/${book.id}`} className="block group">
-        <div className="relative bg-card rounded-[12px] p-4 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200">
+        <div className="relative bg-card rounded-[12px] p-4 book-spine hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200">
           <div className="aspect-[3/4] mb-4 bg-muted rounded-[8px] overflow-hidden flex items-center justify-center">
             {cover ? (
               <img

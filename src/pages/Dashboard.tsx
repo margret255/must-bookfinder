@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { BookCard } from "@/components/BookCard";
 import { DashboardLayout } from "@/components/DashboardLayout";
+import { OrnamentalDivider } from "@/components/OrnamentalDivider";
 import { mockBooks } from "@/data/mockData";
 
 export default function Dashboard() {
@@ -46,7 +47,7 @@ export default function Dashboard() {
 
         {filtered ? (
           <section>
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 section-heading">
               Search Results ({filtered.length})
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -64,7 +65,7 @@ export default function Dashboard() {
           <>
             {/* Recommended */}
             <section className="mb-8">
-              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 section-heading">
                 Recommended For You
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -74,9 +75,11 @@ export default function Dashboard() {
               </div>
             </section>
 
+            <OrnamentalDivider symbol="❖" />
+
             {/* Popular */}
             <section className="mb-8">
-              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 section-heading">
                 Popular Books
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -86,9 +89,11 @@ export default function Dashboard() {
               </div>
             </section>
 
+            <OrnamentalDivider symbol="❖" />
+
             {/* Recently Rated */}
             <section>
-              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 section-heading">
                 Recently Rated
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
