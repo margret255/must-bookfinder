@@ -129,14 +129,10 @@ export default function Register() {
                 <Label htmlFor="password">Password</Label>
                 <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required className="mt-1" />
                 {errors.password && <p className="text-xs text-destructive mt-1">{errors.password}</p>}
-                {password && (
-                  <div className="flex gap-2 mt-2">
-                    {pwChecks.map((c) => (
-                      <span key={c.label} className={`text-[10px] px-2 py-0.5 rounded-full border ${c.pass ? "bg-primary/10 text-primary border-primary/30" : "bg-muted text-muted-foreground border-border"}`}>
-                        {c.pass ? "✓" : "○"} {c.label}
-                      </span>
-                    ))}
-                  </div>
+                {!errors.password && !password && (
+                  <p className="text-[10px] text-muted-foreground mt-0.5">
+                    Must contain: 8+ characters, uppercase, number & special character
+                  </p>
                 )}
               </div>
             </div>
