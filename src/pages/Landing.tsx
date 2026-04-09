@@ -46,8 +46,8 @@ export default function Landing() {
             <span className="text-primary">MUST students.</span>
           </h1>
           <OrnamentalDivider symbol="✦" />
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 drop-cap">
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10">
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10">
+            Master your coursework with peer-backed resources. Find, rate, and share the best academic books for your program.
           </p>
         </motion.div>
 
