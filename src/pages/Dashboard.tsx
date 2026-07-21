@@ -48,7 +48,7 @@ export default function Dashboard() {
         {filtered ? (
           <section>
             <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 section-heading">
-              Search Results ({filtered.length})
+              Search Results ({filtered.length}) 
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {filtered.map((book, i) => (
