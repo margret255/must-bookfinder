@@ -7,7 +7,7 @@ import { DashboardLayout } from "@/components/DashboardLayout";
 import { OrnamentalDivider } from "@/components/OrnamentalDivider";
 import { mockBooks } from "@/data/mockData";
 
-export default function Dashboard() {
+export default function Dashboard() { 
   const [search, setSearch] = useState("");
 
   const recommended = mockBooks.filter((b) => b.category === "Computer Science").slice(0, 4);
